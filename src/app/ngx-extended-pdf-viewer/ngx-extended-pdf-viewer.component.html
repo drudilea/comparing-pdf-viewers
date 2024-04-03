@@ -1,0 +1,15 @@
+<app-arrows (prevClick)="prevPage()" (nextClick)="nextPage()">
+  <ngx-extended-pdf-viewer
+    #pdfViewer
+    [src]="pdfSrc"
+    [page]="currentPage"
+    [height]="'auto'"
+    [sidebarVisible]="false"
+    [showToolbar]="false"
+    [pageViewMode]="'single'"
+    [showBorders]="false"
+    [zoom]="'page-fit'"
+    [ignoreKeyboard]="true"
+  >
+  </ngx-extended-pdf-viewer>
+</app-arrows>

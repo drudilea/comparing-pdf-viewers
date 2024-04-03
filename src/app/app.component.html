@@ -1,1 +1,21 @@
-<app-nx-welcome></app-nx-welcome> <router-outlet></router-outlet>
+<div class="flex flex-col min-h-0 h-screen max-h-screen overflow-hidden">
+  <nav class="flex gap-8 m-2">
+    <a class="py-2 px-4 rounded bg-slate-200" routerLink="/ng2-pdf-viewer"
+      >ng2-pdf</a
+    >
+    <a class="py-2 px-4 rounded bg-slate-200" routerLink="/syncfusion-pdfviewer"
+      >Syncfusion</a
+    >
+    <a class="py-2 px-4 rounded bg-slate-200" routerLink="/ng2-pdfjs-viewer"
+      >ng2-pdfjs</a
+    >
+    <a
+      class="py-2 px-4 rounded bg-slate-200"
+      routerLink="/ngx-extended-pdf-viewer"
+      >ngx-extended</a
+    >
+  </nav>
+  <div class="grow">
+    <router-outlet></router-outlet>
+  </div>
+</div>

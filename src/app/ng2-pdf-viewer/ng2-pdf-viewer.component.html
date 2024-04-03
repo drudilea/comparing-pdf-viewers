@@ -1,0 +1,17 @@
+<app-arrows (prevClick)="prevPage()" (nextClick)="nextPage()">
+  <pdf-viewer
+    #pdfViewer
+    class="h-full block my-0 mx-auto"
+    [autoresize]="true"
+    [external-link-target]="'blank'"
+    [original-size]="false"
+    [page]="currentPage"
+    [render-text]="true"
+    [show-all]="false"
+    [show-borders]="false"
+    [src]="pdfSrc"
+    [zoom-scale]="'page-height'"
+    (pageChange)="pageChange($event)"
+    (after-load-complete)="afterLoadComplete($event)"
+  ></pdf-viewer>
+</app-arrows>

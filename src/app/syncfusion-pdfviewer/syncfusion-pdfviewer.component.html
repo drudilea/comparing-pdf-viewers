@@ -1,0 +1,26 @@
+<app-arrows (prevClick)="prevPage()" (nextClick)="nextPage()">
+  <div class="content-wrapper h-full">
+    <ejs-pdfviewer
+      #pdfViewer
+      id="pdfViewer"
+      [ngClass]="{ 'disable-scroll': disableScroll }"
+      [documentPath]="document"
+      [resourceUrl]="resource"
+      [enablePrint]="false"
+      [enableDownload]="false"
+      [enableToolbar]="false"
+      [enableNavigationToolbar]="false"
+      [zoomMode]="'FitToPage'"
+      style="height: 100%; display: block"
+    >
+    </ejs-pdfviewer>
+  </div>
+  <button
+    class="absolute top-20 left-4 px-4 py-2 rounded"
+    [ngClass]="[disableScroll ? 'bg-green-200' : 'bg-red-200']"
+    (click)="toggleScrollMode()"
+    type="button"
+  >
+    {{ disableScroll ? 'Enable' : 'Disable' }} Scroll
+  </button>
+</app-arrows>

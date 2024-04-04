@@ -140,6 +140,33 @@ export class NgxExtendedPdfComponent implements OnDestroy {
     this.totalPages = pdf.pagesCount;
   }
 
+  onPageRendered() {
+    if (!this.pdfViewerService.isRenderQueueEmpty()) {
+      // try again later when the pages requested by the pdf.js core or the user have been rendered
+      setTimeout(() => this.onPageRendered(), 100);
+    }
+
+    // const pagesBefore = this.spreadMode === 'off' ? 2 : 2;
+    // const pagesAfter = this.spreadMode === 'off' ? 2 : 5;
+    const pagesBefore = 2;
+    const pagesAfter = 5;
+    const startPage = Math.max(this.currentPage - pagesBefore, 1);
+    const endPage = Math.min(
+      this.currentPage + pagesAfter,
+      this.pdfViewerService.numberOfPages()
+    );
+
+    // const renderedPages = this.pdfViewerService.currentlyRenderedPages();
+
+    for (let page = startPage; page <= endPage; page++) {
+      const pageIndex = page - 1;
+      if (!this.pdfViewerService.hasPageBeenRendered(pageIndex)) {
+        this.pdfViewerService.addPageToRenderQueue(pageIndex);
+        break; // break because you can request only one page at a time
+      }
+    }
+  }
+
   ngOnDestroy() {
     this.pdfSourceSubscription.unsubscribe();
   }

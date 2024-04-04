@@ -42,7 +42,7 @@ export const annotations: EditorAnnotation[] = [
     color: [175, 125, 112],
     fontSize: 28.064443781683956,
     value: 'Hello world!',
-    pageIndex: 2,
+    pageIndex: 6,
     rect: [52, 838.7437725206842, 152.53536098442635, 98.00000000000011],
     rotation: 0,
   },

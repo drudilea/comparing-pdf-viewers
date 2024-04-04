@@ -21,7 +21,7 @@
     "@syncfusion/ej2-angular-pdfviewer": "^25.1.37",
     "ng2-pdf-viewer": "^10.0.0",
     "ng2-pdfjs-viewer": "^17.0.3",
-    "ngx-extended-pdf-viewer": "^19.5.1",
+    "ngx-extended-pdf-viewer": "^19.6.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"

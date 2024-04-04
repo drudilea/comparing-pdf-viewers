@@ -1,10 +1,10 @@
-<app-arrows (prevClick)="prevPage()" (nextClick)="nextPage()">
+<app-arrows (prevClick)="prevPage()" (nextClick)="nextPage()" *ngIf="pdfSrc">
   <div class="content-wrapper h-full">
     <ejs-pdfviewer
       #pdfViewer
       id="pdfViewer"
       [ngClass]="{ 'disable-scroll': disableScroll }"
-      [documentPath]="document"
+      [documentPath]="pdfSrc"
       [resourceUrl]="resource"
       [enablePrint]="false"
       [enableDownload]="false"

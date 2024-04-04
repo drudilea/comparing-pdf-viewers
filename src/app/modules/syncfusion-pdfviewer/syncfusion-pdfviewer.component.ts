@@ -1,4 +1,9 @@
-import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  OnDestroy,
+  ViewChild,
+  ViewEncapsulation,
+} from '@angular/core';
 import {
   PdfViewerModule,
   LinkAnnotationService,
@@ -14,8 +19,11 @@ import {
   FormFieldsService,
   PdfViewerComponent,
 } from '@syncfusion/ej2-angular-pdfviewer';
-import { ArrowsComponent } from '../components/arrows/arrows.component';
+import { ArrowsComponent } from '../../components/arrows/arrows.component';
 import { CommonModule } from '@angular/common';
+import { PdfService } from 'src/app/services/pdf/pdf.service';
+import { Subscription } from 'rxjs';
+import { PdfSource } from 'src/app/models/pdf';
 
 const syncfusionPdfViewerServices = [
   LinkAnnotationService,
@@ -40,19 +48,21 @@ const syncfusionPdfViewerServices = [
   styleUrl: 'syncfusion-pdfviewer.component.css',
   encapsulation: ViewEncapsulation.None,
 })
-export class SyncfusionPdfviewerComponent {
+export class SyncfusionPdfviewerComponent implements OnDestroy {
   @ViewChild('pdfViewer') public pdfviewerControl!: PdfViewerComponent;
 
+  resource = 'https://cdn.syncfusion.com/ej2/23.1.43/dist/ej2-pdfviewer-lib';
   disableScroll = false;
-  public document = 'https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf';
-  public resource =
-    'https://cdn.syncfusion.com/ej2/23.1.43/dist/ej2-pdfviewer-lib';
+  pdfSrc = '';
+  pdfSourceSubscription: Subscription;
 
-  // const pdfConfig: PdfViewerModel = {
-  //   document: 'https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf',
-  //   resource: 'https://cdn.syncfusion.com/ej2/23.1.43/dist/ej2-pdfviewer-lib',
-  //   zoomMode: 'FitToPage',
-  // };
+  constructor(private pdfService: PdfService) {
+    this.pdfSourceSubscription = this.pdfService
+      .pdfSource$()
+      .subscribe((pdfSource: PdfSource) => {
+        this.pdfSrc = pdfSource.src;
+      });
+  }
 
   public toggleScrollMode(): void {
     this.disableScroll = !this.disableScroll;
@@ -64,5 +74,9 @@ export class SyncfusionPdfviewerComponent {
 
   public nextPage(): void {
     this.pdfviewerControl.navigation.goToNextPage();
+  }
+
+  ngOnDestroy() {
+    this.pdfSourceSubscription.unsubscribe();
   }
 }

@@ -1,16 +1,14 @@
-<app-arrows (prevClick)="prevPage()" (nextClick)="nextPage()">
+<app-arrows (prevClick)="prevPage()" (nextClick)="nextPage()" *ngIf="pdfSrc">
   <pdf-viewer
     #pdfViewer
-    class="h-full block my-0 mx-auto"
-    [autoresize]="true"
+    class="h-full w-[80vw] relative"
     [external-link-target]="'blank'"
     [original-size]="false"
     [page]="currentPage"
     [render-text]="true"
     [show-all]="false"
-    [show-borders]="false"
     [src]="pdfSrc"
-    [zoom-scale]="'page-height'"
+    [zoom-scale]="'page-fit'"
     (pageChange)="pageChange($event)"
     (after-load-complete)="afterLoadComplete($event)"
   ></pdf-viewer>

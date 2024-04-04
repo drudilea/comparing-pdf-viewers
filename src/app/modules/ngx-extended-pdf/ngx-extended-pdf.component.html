@@ -1,0 +1,58 @@
+<app-arrows (prevClick)="prevPage()" (nextClick)="nextPage()" *ngIf="pdfSrc">
+  <div class="flex justify-center mb-3">
+    <button
+      class="py-1 px-2 bg-stone-300 border-stone-400 border mx-2 rounded"
+      type="button"
+      (click)="onDownload()"
+    >
+      Download
+    </button>
+    <button
+      class="py-1 px-2 bg-stone-300 border-stone-400 border mx-2 rounded"
+      type="button"
+      (click)="addTextEditor()"
+    >
+      Add annotation
+    </button>
+    <button
+      class="py-1 px-2 bg-stone-300 border-stone-400 border mx-2 rounded"
+      type="button"
+      (click)="onLoadAnnotations()"
+    >
+      Load annotations
+    </button>
+    <button
+      class="py-1 px-2 bg-stone-300 border-stone-400 border mx-2 rounded"
+      type="button"
+      (click)="onDownloadAnnotations()"
+    >
+      Download annotations
+    </button>
+    <button
+      class="py-1 px-2 bg-stone-300 border-stone-400 border mx-2 rounded"
+      type="button"
+      (click)="onDeleteAnnotations()"
+    >
+      Delete all annotations
+    </button>
+  </div>
+  <ngx-extended-pdf-viewer
+    #pdfViewer
+    [src]="pdfSrc"
+    [page]="currentPage"
+    [height]="'auto'"
+    [sidebarVisible]="false"
+    [showToolbar]="false"
+    [pageViewMode]="'single'"
+    [handTool]="false"
+    [showHandToolButton]="true"
+    [textLayer]="true"
+    [showBorders]="false"
+    [zoom]="'page-fit'"
+    [ignoreKeyboard]="true"
+    (pageChange)="onPageChange($event)"
+    (formDataChange)="onFormDataChange($event)"
+    (pdfLoaded)="onPdfLoaded($event)"
+  >
+  </ngx-extended-pdf-viewer>
+</app-arrows>
